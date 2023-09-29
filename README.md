@@ -19,4 +19,13 @@ This component still being development, and surely has an issue. open contributi
 #More Options
 >Handle HasMany RelationShip
 >
-`on development :"V` 
+`const columns = [
+{ 
+                        header: "Comment", 
+                        key: "comments",
+                        relationship: {
+                                related: 'HAS_MANY',
+                                targetKeys: ['comment']
+                        }
+                }
+        ];`
