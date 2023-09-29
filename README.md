@@ -29,3 +29,12 @@ This component still being development, and surely has an issue. open contributi
                         }
                 }
         ];`
+
+>Handle BelongsTo RelationShip
+>
+`const columns = [
+{ 
+                        header: "Product", 
+                        key: "product.image"
+                }
+        ];`
