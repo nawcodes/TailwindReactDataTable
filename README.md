@@ -1,6 +1,10 @@
 # TailwindReactDataTable
 This component still being development, and surely has an issue. open contribution for free developer :")
 
+#issue 
+- Pagination Has not completed yet
+- Searching data manualy define on parent function
+- Actions Cant handle Event Listener yet
 
 # How to use 
 >Define Column
