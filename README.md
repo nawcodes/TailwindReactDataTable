@@ -49,3 +49,7 @@ This component still being development, and surely has an issue. open contributi
                     return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(value);
                 }
             }`
+
+> Give A Route on Your action links
+>
+`const actions = ( <><button className="w-6 h-6" isLink={true} href="/invoice/{yourPayload.key}/detail">click me</button></>);`
