@@ -25,16 +25,27 @@ const TableData = ({ columns, rowData }) => {
                                         (value, indexValue) => (
                                             <li>
                                                 {column.relationship.targetKeys.map(
-                                                    (key, keyIndex) => (
-                                                        <span key={keyIndex}>{value[key]}</span>
-                                                    )
+                                                    (key, keyIndex) =>
+                                                        column.relationship.formatValue ? (
+                                                            <span
+                                                                key={keyIndex}
+                                                            >
+                                                                {column.relationship.formatValue(value[key])}
+                                                            </span>
+                                                        ) : (
+                                                            <span
+                                                                key={keyIndex}
+                                                            >
+                                                                {value[key]}
+                                                            </span>
+                                                        )
                                                 )}
                                             </li>
                                         )
                                     )}
                                 </>
-                            // TODO: Handle MorphTO
-                            ) : column.relationship.related === "MORPH_TO" ? (
+                            ) : // TODO: Handle MorphTO
+                            column.relationship.related === "MORPH_TO" ? (
                                 <>{console.log(rowData[column.key])}</>
                             ) : (
                                 <></>
@@ -47,7 +58,20 @@ const TableData = ({ columns, rowData }) => {
                             .reduce((acc, curr) => acc && acc[curr], rowData)
                     ) : (
                         // No Has Relationship
-                        rowData[column.key]
+                        column.formatValue ? (
+                            <span
+                                key={index}
+                            >
+                                {rowData[column.key]}
+                            </span>
+                        ) : (
+                            <span
+                                key={index}
+                            >
+                                {rowData[column.key]}
+                            </span>
+                        )
+                        
                     )}
                 </td>
             ))}
