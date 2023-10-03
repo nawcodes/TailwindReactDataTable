@@ -42,3 +42,10 @@ This component still being development, and surely has an issue. open contributi
                         key: "product.image"
                 }
         ];`
+>Handle FormatValue Relationship
+>
+`relationship: {
+                formatValue: (value) => {
+                    return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(value);
+                }
+            }`
