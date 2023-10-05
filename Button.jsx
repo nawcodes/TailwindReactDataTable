@@ -1,5 +1,6 @@
 import { Link } from "@inertiajs/react";
 import { useState } from "react";
+import '../../css/style.css';
 export default function Button({
     href,
     isLink,
@@ -11,6 +12,7 @@ export default function Button({
     isLoading,
     disabled,
     icon,
+    dataValue
 }) {
     const buttonSize =
         size === "extra-small"
@@ -51,9 +53,10 @@ export default function Button({
                 </Link>
             ) : (
                 <button
-                    className={`focus:outline-none rounded-lg ${buttonSize} mr-1 mb-2 dark:focus:ring-yellow-900  ${buttonClass} ${optClass}`}
+                    className={`focus:outline-none rounded-lg button-container ${buttonSize} mr-1 mb-2 dark:focus:ring-yellow-900  ${buttonClass} ${optClass}`}
                     onClick={onClick}
                     disabled={disabled}
+                    data-value={dataValue}
                 >
                     {isLoading ? (
                         <>
