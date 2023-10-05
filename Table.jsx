@@ -26,11 +26,14 @@ const TableData = ({ columns, rowData }) => {
                                             <li>
                                                 {column.relationship.targetKeys.map(
                                                     (key, keyIndex) =>
-                                                        column.relationship.formatValue ? (
+                                                        column.relationship
+                                                            .formatValue ? (
                                                             <span
                                                                 key={keyIndex}
                                                             >
-                                                                {column.relationship.formatValue(value[key])}
+                                                                {column.relationship.formatValue(
+                                                                    value[key]
+                                                                )}
                                                             </span>
                                                         ) : (
                                                             <span
@@ -56,22 +59,11 @@ const TableData = ({ columns, rowData }) => {
                         column.key
                             .split(".")
                             .reduce((acc, curr) => acc && acc[curr], rowData)
+                    ) : // No Has Relationship
+                    column.formatValue ? (
+                        <span key={index}>{rowData[column.key]}</span>
                     ) : (
-                        // No Has Relationship
-                        column.formatValue ? (
-                            <span
-                                key={index}
-                            >
-                                {rowData[column.key]}
-                            </span>
-                        ) : (
-                            <span
-                                key={index}
-                            >
-                                {rowData[column.key]}
-                            </span>
-                        )
-                        
+                        <span key={index}>{rowData[column.key]}</span>
                     )}
                 </td>
             ))}
@@ -98,14 +90,13 @@ const Table = ({ columns, rowData, actions, onSearch }) => {
     const columnsWithNumbering = [{ header: "#", key: "_number" }, ...columns];
 
     const dataWithNumbering = rowData.map((value, index) => {
-        if (actions) {
-            let modifiedActions = actions;
-            actions = modifiedActions = React.cloneElement(actions, {
+        let modifiedActions = actions;
+
+        if (modifiedActions) {
+            modifiedActions = React.cloneElement(actions, {
                 // check when children is has 1 => then is not array
                 children: Array.isArray(actions.props.children)
                     ? actions.props.children.map((child, i) => {
-                          // console.log(i, i === index, child, child.props.isLink !== undefined);
-
                           if (child.props.isLink !== undefined) {
                               let originalHref = child.props.href;
                               // href to arrays
@@ -117,6 +108,7 @@ const Table = ({ columns, rowData, actions, onSearch }) => {
                                       /{([^}]+)}/g,
                                       (match, captureGroup) => {
                                           // Found the data
+                                          
                                           let payload = captureGroup
                                               .split(".")
                                               .reduce(
@@ -130,6 +122,7 @@ const Table = ({ columns, rowData, actions, onSearch }) => {
                                       }
                                   );
                               });
+
                               const { isLink, href, ...newAttribute } =
                                   child.props;
 
@@ -149,6 +142,40 @@ const Table = ({ columns, rowData, actions, onSearch }) => {
                                   </Button>
                               );
                           }
+
+                        //   an action has a event handler
+                          if (
+                              child.props.dataValue !== undefined &&
+                              child.props.onClick !== undefined
+                          ) {
+                        
+                            let result = ""
+                            //   is data value contain (.)
+                            if(child.props.dataValue.includes('.')) {
+                                let keys = child.props.dataValue.split('.');
+                                result =  keys[0];
+                                for (let inIndex = 1; inIndex < keys.length; inIndex++) {
+                                    result += value + '[' + keys[inIndex] + ']'; 
+                                }
+                            }else {
+                                
+                                result = value[child.props.dataValue];
+
+                            }
+
+                            const { dataValue, ...newAttribute } =
+                            child.props;
+
+                            return (
+                                <Button
+                                    dataValue={result}
+                                    {...newAttribute}
+                                >
+                                    {child.props.children}
+                                </Button>
+                            )
+                          }
+
                           return child;
                       })
                     : React.Children.map(
@@ -220,7 +247,7 @@ const Table = ({ columns, rowData, actions, onSearch }) => {
             ...value,
             _number: index + 1,
             ...((value.actions !== false) | (value.actions == undefined) && {
-                actions: actions,
+                actions: modifiedActions,
             }),
         };
     });
