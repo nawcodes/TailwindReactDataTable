@@ -53,3 +53,15 @@ This component still being development, and surely has an issue. open contributi
 > Give A Route on Your action links
 >
 `const actions = ( <><button className="w-6 h-6" isLink={true} href="/invoice/{yourPayload.key}/detail">click me</button></>);`
+
+> Give Event On Action Table
+>1. define attribute dataValue & onClick
+>   
+`const actions = ( <><button className="w-6 h-6" dataValue="yourKeysTableField" onClick={(e) => handleDataValue(e)}>click me</button></>);`
+>3. define function
+>   
+`const handleDataValue = (e) => {
+    console.log(e.target.getAttribute('data-value'));
+}`
+
+
