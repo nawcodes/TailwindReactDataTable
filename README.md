@@ -1,5 +1,7 @@
 # TailwindReactDataTable
-This component still being development, and surely has an issue. open contribution for free developer :")
+I created this repo because at that time I couldn't find a React datatable that supported Tailwind
+Fell free to use this component, don't forget to start the
+
 # Feature
 - Searching data
 - Pagination 
