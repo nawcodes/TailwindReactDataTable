@@ -1,5 +1,5 @@
 # TailwindReactDataTable
-Just download the file. save to your resource component,  and fix every file about importing Component. 
+Download the file. save to your resource component,  and fix every file about importing Component. then you can use it. 
 # Feature
 - Searching data
 - Pagination 
