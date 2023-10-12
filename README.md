@@ -7,6 +7,7 @@ Download the file. save to your resource component,  and fix every file about im
 - Using Tailwind For Styling, Fell Free To Custom Style
 - RelationShip OneToOne
 - RelationShip HasMany
+- FormatValue before display
 
 # How to use 
 >Define Column
