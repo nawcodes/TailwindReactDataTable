@@ -66,4 +66,8 @@ This component still being development, and surely has an issue. open contributi
     console.log(e.target.getAttribute('data-value'));
 }`
 
+> Define pagination itemsPerPage
+>
+> `<Table itemsPerPage={10}></Table>`
+
 
