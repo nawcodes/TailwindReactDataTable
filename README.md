@@ -22,7 +22,7 @@ This component still being development, and surely has an issue. open contributi
 >
 `<Table actions="actions" columns="columns" rowData="yourPayloads"></Table>`
 
-#More Options
+# More Options
 >Handle HasMany RelationShip
 >
 `const columns = [
