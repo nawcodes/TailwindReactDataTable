@@ -5,7 +5,7 @@ This component still being development, and surely has an issue. open contributi
 - Pagination 
 - Actions with event handler
 - Using Tailwind For Styling, Fell Free To Custom Style
-- RelationShip BelongsTO
+- RelationShip OneToOne
 - RelationShip HasMany
 
 # How to use 
@@ -36,7 +36,7 @@ This component still being development, and surely has an issue. open contributi
                 }
         ];`
 
->Handle BelongsTo RelationShip
+>Handle OneToOne RelationShip
 >
 `const columns = [
 { 
