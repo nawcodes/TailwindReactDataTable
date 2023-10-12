@@ -1,10 +1,12 @@
 # TailwindReactDataTable
 This component still being development, and surely has an issue. open contribution for free developer :")
-
-#issue 
-- Pagination Has not completed yet
-- Searching data manualy define on parent function
-
+# Feature
+- Searching data
+- Pagination 
+- Actions with event handler
+- Using Tailwind For Styling, Fell Free To Custom Style
+- RelationShip BelongsTO
+- RelationShip HasMany
 
 # How to use 
 >Define Column
