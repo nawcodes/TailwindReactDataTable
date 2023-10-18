@@ -63,7 +63,15 @@ const TableData = ({ columns, rowData }) => {
                     column.formatValue ? (
                         <span key={index}>{rowData[column.key]}</span>
                     ) : (
-                        <span key={index}>{rowData[column.key]}</span>
+                        <span key={index}>
+                            {rowData[column.key] === true ? (
+                                <>Yes</>
+                            ) : rowData[column.key] === false ? (
+                                <>No</>
+                            ) : (
+                                rowData[column.key]
+                            )}
+                        </span>
                     )}
                 </td>
             ))}
@@ -311,7 +319,7 @@ const Table = ({ columns, rowData, actions, onSearch, itemsPerPage = 5 }) => {
                             type="text"
                             id="table-search-users"
                             className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search for users"
+                            placeholder="Search ..."
                             onChange={(e) => searchData(e)}
                         />
                     </div>
@@ -332,16 +340,16 @@ const Table = ({ columns, rowData, actions, onSearch, itemsPerPage = 5 }) => {
                         </tr>
                     </thead>
                     <tbody>
-                    {dataWithNumbering
-                        .slice(startIndex, endIndex) // Menampilkan data sesuai halaman saat ini
-                        .map((filteredData, index) => (
-                            <TableData
-                                key={index}
-                                columns={columnsWithNumbering}
-                                rowData={filteredData}
-                                actions={actions}
-                            ></TableData>
-                        ))}
+                        {dataWithNumbering
+                            .slice(startIndex, endIndex) // Menampilkan data sesuai halaman saat ini
+                            .map((filteredData, index) => (
+                                <TableData
+                                    key={index}
+                                    columns={columnsWithNumbering}
+                                    rowData={filteredData}
+                                    actions={actions}
+                                ></TableData>
+                            ))}
                     </tbody>
                 </table>
                 <div className="flex justify-end py-4 px-2">
